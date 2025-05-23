@@ -76,6 +76,7 @@ They instantiate the top-level and submodules, apply stimulus to inputs (clock, 
 
 There is a Jupyter notebook `Heatmap_Generation.ipynb` that can be used to generate heatmaps of the simulations results done by the `MdR_TB.vhd` testbench.
 Some examples of simulation results are provided in the `Simulation_Results` folder.
+The generated heatmaps are saved in the `Heatmaps` folder.
 
 ## Notes
 
