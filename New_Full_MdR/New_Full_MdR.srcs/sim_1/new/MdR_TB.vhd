@@ -53,7 +53,7 @@ architecture Behavioral of MdR_TB is
 
     -- File handling
     file results_file : TEXT;
-    constant results_filename : string := "C:\\Users\\Des\\Desktop\\simulation_results.csv";
+    constant results_filename : string := "..\\..\\..\\..\\..\\..\\Simulation_Results\\simulation_results.csv";
 
 begin
 

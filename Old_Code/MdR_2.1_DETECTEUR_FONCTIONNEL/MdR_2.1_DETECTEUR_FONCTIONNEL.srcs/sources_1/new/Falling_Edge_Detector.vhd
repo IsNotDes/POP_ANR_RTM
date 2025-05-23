@@ -1,0 +1,25 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity Falling_Edge_Detector_D is
+    Port (
+        clk_s  : in  STD_LOGIC;  -- Input signal to monitor (renamed for clarity)
+        ro_out : in  STD_LOGIC;  -- Clock signal
+        q_fe   : out STD_LOGIC   -- Falling edge pulse output
+    );
+end Falling_Edge_Detector_D;
+
+architecture Behavioral of Falling_Edge_Detector_D is
+    signal clk_s_dly : STD_LOGIC := '0'; -- Register to store previous state of clk_s, initialized
+begin
+    -- Register the input signal on the clock edge
+    process(ro_out)
+    begin
+        if ro_out'event and ro_out = '1' then
+            clk_s_dly <= clk_s;
+        end if;
+    end process;
+
+    q_fe <= clk_s_dly and (not clk_s);
+
+end Behavioral;
