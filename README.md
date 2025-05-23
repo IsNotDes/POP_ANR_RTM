@@ -7,31 +7,54 @@ The system is structured for FPGA implementation, with support for simulation an
 
 ## Directory Structure
 
-- `New_Full_MdR/New_Full_MdR.srcs/sources_1/new/` — Main VHDL source files (e.g., `MdR.vhd`, `ATM.vhd`, `Detector.vhd`, etc.)
-- `New_Full_MdR/New_Full_MdR.srcs/constrs_1/new/` — Constraints files for different FPGA boards (e.g., `New_Full_MdR_Basys3.xdc`)
-- `New_Full_MdR/New_Full_MdR.srcs/sim_1/new/` — VHDL testbenches for simulation (e.g., `MdR_TB.vhd`)
+- `New_Full_MdR/New_Full_MdR.srcs/sources_1/new/` — Main VHDL source files:
+  - `MdR.vhd` (top-level)
+    - `ATM.vhd`
+        - `Alarm_Manage_ATM.vhd`, `Comparator_ATM.vhd`, `Counter_ATM.vhd`, `Counter_Edges_ATM.vhd`, `Storing_ATM.vhd`
+    - `Detector.vhd`
+        - `Comparator_Detector.vhd`, `Counter_Detector.vhd`, `Storing_Detector.vhd`, `Falling_Edge_Detector.vhd`
+    - `RO_SIRO.vhd`
+        - `RO.vhd`, `SIRO.vhd`
+- `New_Full_MdR/New_Full_MdR.srcs/constrs_1/new/` — Constraints files for different FPGA boards:
+  - `New_Full_MdR_Basys3.xdc` (Basys3)
+  - `New_Full_MdR_CMODS7.xdc` (CMODS7)
+  - `New_Full_MdR_S7.xdc` (S7)
+- `New_Full_MdR/New_Full_MdR.srcs/sim_1/new/` — VHDL testbenches for simulation:
+  - `MdR_TB.vhd`, `MdR_TB_SIMPLE_ATM.vhd`, `MdR_TB_SIMPLE_D.vhd`, `MdR_TB_SIMPLE_FULL.vhd`, `RO_SIRO_TB.vhd`
 
 ## Main Components
 
 - **MdR.vhd**: Top-level entity integrating submodules for signal processing and alarm generation.
-- **Detector.vhd**: Module for detecting specific signal events and triggering alarms.
-- **ATM.vhd**: Auto Test Module for automated signal analysis.
-- **RO_SIRO.vhd**: Ring Oscillator and SIRO module for generating clock signals.
+    - **ATM.vhd**: Auto Test Module to detect POTAs.
+        - `Alarm_Manage_ATM.vhd`, `Comparator_ATM.vhd`, `Counter_ATM.vhd`, `Counter_Edges_ATM.vhd`, `Storing_ATM.vhd`
+    - **Detector.vhd**: Module for detecting clock glitch attacks.
+        - `Comparator_Detector.vhd`, `Counter_Detector.vhd`, `Storing_Detector.vhd`, `Falling_Edge_Detector.vhd`
+    - **RO_SIRO.vhd**: Ring Oscillator and SIRO module for generating clock signals.
+        - `RO.vhd`, `SIRO.vhd`
 
 ## Constraints
 
-Constraints files (`.xdc`) define pin assignments, clock settings, and special properties for synthesis. For example, `New_Full_MdR_Basys3.xdc` configures:
+Constraint files (`.xdc`) define pin assignments, clock settings, and special properties for synthesis. Provided for multiple FPGA boards:
+- `New_Full_MdR_Basys3.xdc`: Basys3 board
+- `New_Full_MdR_CMODS7.xdc`: CMODS7 board
+- `New_Full_MdR_S7.xdc`: S7 board
+
+These files configure:
 - Voltage and IO standards
-- Pin mapping for inputs/outputs (e.g., reset, enable, alarms, stored values)
+- Pin mapping for inputs/outputs (reset, enable, alarms, stored values, etc.)
 - Clock and combinatorial loop allowances for ring oscillators
 
 ## Testbenches
 
-Testbenches (e.g., `MdR_TB.vhd`) provide simulation environments for:
-- Instantiating the top-level and submodules
-- Applying stimulus to inputs (clock, reset, enable, etc.)
-- Observing outputs like alarms and stored values
-- Verifying correct operation through simulation tools
+Testbenches provide simulation environments for verifying correct operation:
+- `MdR_TB.vhd`: Full system testbench
+    - This will be used to generate a CSV file in the `Simulation_Results` folder that will be used to generate a heatmap of the simulation results (see `Heatmap_Generation.ipynb` and chapter "Heatmap generation")
+- `MdR_TB_SIMPLE_ATM.vhd`: Simplified ATM module testbench
+- `MdR_TB_SIMPLE_D.vhd`: Simplified Detector module testbench
+- `MdR_TB_SIMPLE_FULL.vhd`: Simplified full system testbench
+- `RO_SIRO_TB.vhd`: Ring Oscillator & SIRO testbench
+
+They instantiate the top-level and submodules, apply stimulus to inputs (clock, reset, enable, etc.), and observe outputs (alarms, stored values, etc.).
 
 ## How to Build and Simulate
 
@@ -48,6 +71,11 @@ Testbenches (e.g., `MdR_TB.vhd`) provide simulation environments for:
 
 - Xilinx Vivado (recommended) or compatible VHDL synthesis/simulation tool
 - Supported FPGA board (e.g., Basys3, CMODS7, S7)
+
+## Heatmap generation
+
+There is a Jupyter notebook `Heatmap_Generation.ipynb` that can be used to generate heatmaps of the simulations results done by the `MdR_TB.vhd` testbench.
+Some examples of simulation results are provided in the `Simulation_Results` folder.
 
 ## Notes
 
