@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="44" Path="C:/Users/guerinen/Downloads/New_Full_MdR_Final/New_Full_MdR/.Xil/Vivado-10272-ES2027/PrjAr/_X_/New_Full_MdR.xpr">
+<Project Version="7" Minor="44" Path="C:/Users/Des/Desktop/POP-ANR_MDR/New_Full_MdR/New_Full_MdR.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="c3636a213f434de5bf9ea8a57eef9846"/>
@@ -22,6 +22,7 @@
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="ProjectType" Val="Default"/>
+    <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
     <Option Name="IPCachePermission" Val="read"/>
     <Option Name="IPCachePermission" Val="write"/>
     <Option Name="EnableCoreContainer" Val="FALSE"/>
@@ -29,7 +30,7 @@
     <Option Name="IPUserFilesDir" Val="$PIPUSERFILESDIR"/>
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
-    <Option Name="WTXSimLaunchSim" Val="237"/>
+    <Option Name="WTXSimLaunchSim" Val="239"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -58,90 +59,10 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/new/ATM.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/ATM.vhd"/>
-          <Attr Name="ImportTime" Val="1745330606"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/Alarm_Manage_ATM.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Alarm_Manage_ATM.vhd"/>
-          <Attr Name="ImportTime" Val="1745327528"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/Comparator_ATM.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Comparator_ATM.vhd"/>
-          <Attr Name="ImportTime" Val="1745330630"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/Comparator_Detector.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Comparator_Detector.vhd"/>
-          <Attr Name="ImportTime" Val="1745330772"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/Counter_ATM.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Counter_ATM.vhd"/>
-          <Attr Name="ImportTime" Val="1745330615"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/Counter_Detector.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Counter_Detector.vhd"/>
-          <Attr Name="ImportTime" Val="1745330472"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/Counter_Edges_ATM.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Counter_Edges_ATM.vhd"/>
-          <Attr Name="ImportTime" Val="1745311702"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/Detector.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Detector.vhd"/>
-          <Attr Name="ImportTime" Val="1745393314"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/Falling_Edge_Detector.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Falling_Edge_Detector.vhd"/>
-          <Attr Name="ImportTime" Val="1745311632"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/new/RO.vhd">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/RO.vhd"/>
           <Attr Name="ImportTime" Val="1745322115"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/RO_SIRO.vhd">
-        <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/RO_SIRO.vhd"/>
-          <Attr Name="ImportTime" Val="1745322094"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
@@ -154,8 +75,98 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/new/RO_SIRO.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/RO_SIRO.vhd"/>
+          <Attr Name="ImportTime" Val="1745322094"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/ATM.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/ATM.vhd"/>
+          <Attr Name="ImportTime" Val="1745330606"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Alarm_Manage_ATM.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Alarm_Manage_ATM.vhd"/>
+          <Attr Name="ImportTime" Val="1745327528"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Comparator_ATM.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Comparator_ATM.vhd"/>
+          <Attr Name="ImportTime" Val="1745330630"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Comparator_Detector.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Comparator_Detector.vhd"/>
+          <Attr Name="ImportTime" Val="1745330772"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Counter_ATM.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Counter_ATM.vhd"/>
+          <Attr Name="ImportTime" Val="1745330615"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Counter_Detector.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Counter_Detector.vhd"/>
+          <Attr Name="ImportTime" Val="1745330472"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Counter_Edges_ATM.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Counter_Edges_ATM.vhd"/>
+          <Attr Name="ImportTime" Val="1745311702"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Detector.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Detector.vhd"/>
+          <Attr Name="ImportTime" Val="1745393314"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Falling_Edge_Detector.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Falling_Edge_Detector.vhd"/>
+          <Attr Name="ImportTime" Val="1745311632"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/new/Storing_ATM.vhd">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Storing_ATM.vhd"/>
           <Attr Name="ImportTime" Val="1745406792"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -164,6 +175,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/Storing_Detector.vhd">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/Storing_Detector.vhd"/>
           <Attr Name="ImportTime" Val="1745330755"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -172,6 +184,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/MdR.vhd">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sources_1/new/MdR.vhd"/>
           <Attr Name="ImportTime" Val="1745330696"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -188,8 +201,7 @@
       <File Path="$PPRDIR/archive_project_summary.txt"/>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="MdR"/>
-        <Option Name="TopAutoSet" Val="TRUE"/>
+        <Option Name="TopModule" Val="RO_SIRO"/>
       </Config>
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -226,8 +238,17 @@
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1">
       <Filter Type="Srcs"/>
+      <File Path="$PSRCDIR/sim_1/new/RO_SIRO_TB.vhd">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sim_1/new/RO_SIRO_TB.vhd"/>
+          <Attr Name="ImportTime" Val="1745311787"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sim_1/new/MdR_TB_SIMPLE_FULL.vhd">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="ImportPath" Val="$PPRDIR/../../../../New_Full_MdR.srcs/sim_1/new/MdR_TB_SIMPLE_FULL.vhd"/>
           <Attr Name="ImportTime" Val="1747395422"/>
           <Attr Name="UsedIn" Val="synthesis"/>
@@ -261,18 +282,9 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sim_1/new/RO_SIRO_TB.vhd">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../../../../../../../../../../../../../../../../../../../../New_Full_MdR.srcs/sim_1/new/RO_SIRO_TB.vhd"/>
-          <Attr Name="ImportTime" Val="1745311787"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="MdR_TB_SIMPLE_FULL"/>
+        <Option Name="TopModule" Val="RO_SIRO_TB"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
