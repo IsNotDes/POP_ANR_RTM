@@ -81,10 +81,10 @@ begin
         
         -- Release reset
         reset <= '0';
-        wait for 2 ms;
+        wait for 500 us;
     
         enable_ro_and_siro <= '0';
-        wait for 2 ms;
+        wait for 500 us;
         
         -- ======================================
         
@@ -97,7 +97,7 @@ begin
         reset <= '0';
         wait for 250 us;
         
-        wait for 2 ms;        
+        wait for 500 us;        
         
         -- ======================================
         
@@ -110,7 +110,7 @@ begin
         reset <= '0';
         wait for 250 us;
         
-        wait for 2 ms;    
+        wait for 500 us;    
         
         -- ======================================
         
@@ -123,7 +123,7 @@ begin
         reset <= '0';
         wait for 250 us;
         
-        wait for 2 ms;    
+        wait for 500 us;    
         
         -- ======================================
         
@@ -136,7 +136,7 @@ begin
         reset <= '0';
         wait for 250 us;
         
-        wait for 2 ms;    
+        wait for 500 us;    
     
     end process;
 end Behavioral;

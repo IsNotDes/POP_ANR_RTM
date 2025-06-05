@@ -72,36 +72,26 @@ begin
     begin
         -- Initial reset state
         reset <= '1';
-        enable_ro_and_siro <= '0';
-        wait for 5 us;
-        
-        -- Enable the oscillators
-        enable_ro_and_siro <= '1';
-        wait for 5 us;
-        
-        -- Release reset
+        wait for 25 us;
         reset <= '0';
-        wait for 2 ms;
-    
+        enable_ro_and_siro <= '1';
+        wait for 200 us;
+        
         enable_ro_and_siro <= '0';
-        wait for 2 ms;
+        reset <= '1';
+        wait for 25 us;
+        reset <= '0';
+        wait for 200 us;
         
         CLK_S_PERIOD <= 5 us;
-        wait for 2 ms;
-        
-        CLK_S_PERIOD <= 10 us;
-        
-        -- Reset between measurements
         reset <= '1';
-        wait for 200 us;
+        wait for 25 us;
         reset <= '0';
         wait for 200 us;
         
-        wait for 2 ms;
-        
-        -- Reset between measurements
+        CLK_S_PERIOD <= 10 us;
         reset <= '1';
-        wait for 200 us;
+        wait for 25 us;
         reset <= '0';
         wait for 200 us;
     

@@ -12,7 +12,7 @@ entity RO is
 end RO;
 
 architecture Behavioral of RO is
-    constant NUM_INV : integer := 51; -- Number of inverters (257 - simulation for 4 MHz | ?? - simulation for 26 MHz | 51 - implementation for 26MHz)
+    constant NUM_INV : integer := 51; -- Number of inverters (257 (or 271 if no SIROs)) - simulation for 4 MHz | ?? - simulation for 26 MHz | 51 - implementation for 26MHz)
     signal Inverters : std_logic_vector(NUM_INV-1 downto 0);
     signal Nand_out  : std_logic;
 

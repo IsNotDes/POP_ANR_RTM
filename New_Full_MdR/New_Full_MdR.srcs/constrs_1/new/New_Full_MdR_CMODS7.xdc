@@ -10,13 +10,14 @@ set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets RO_SIRO_UUT/GENERATE_SIRO[
 
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets clk_s_IBUF]
 
-create_clock -name ro_out -period 38.46 -waveform {0 19.23} [get_nets ro_out]
+create_clock -name clk_s -period 1538.46 -waveform {0 769.23} [get_nets clk_s_IBUF] # 1538.46 ns period
+create_clock -name ro_out -period 38.46 -waveform {0 19.23} [get_nets ro_out] # 38.46 ns period
 
 ## Enable RO and SIRO
 set_property PACKAGE_PIN D2 [get_ports enable_ro_and_siro]
 set_property IOSTANDARD LVCMOS33 [get_ports enable_ro_and_siro]
-set_property PACKAGE_PIN D1 [get_ports reset]
-set_property IOSTANDARD LVCMOS33 [get_ports reset]
+# set_property PACKAGE_PIN D1 [get_ports reset]
+# set_property IOSTANDARD LVCMOS33 [get_ports reset]
 
 ## Alarms Outputs (LED)
 set_property PACKAGE_PIN E2 [get_ports Alarm_ATM]					
@@ -59,6 +60,8 @@ set_property -dict { PACKAGE_PIN A2    IOSTANDARD LVCMOS33 } [get_ports {edge_co
 set_property -dict { PACKAGE_PIN B2    IOSTANDARD LVCMOS33 } [get_ports {edge_count[1]}]
 set_property -dict { PACKAGE_PIN B1    IOSTANDARD LVCMOS33 } [get_ports {edge_count[0]}]
 set_property -dict { PACKAGE_PIN C1    IOSTANDARD LVCMOS33 } [get_ports {edges_done}]
+
+set_property -dict { PACKAGE_PIN A4    IOSTANDARD LVCMOS33 } [get_ports {reset}]
 
 ##Pmod Header JB
 ##Sch name = JB1
