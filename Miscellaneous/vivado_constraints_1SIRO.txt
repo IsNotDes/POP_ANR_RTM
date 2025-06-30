@@ -1,0 +1,2 @@
+set_property BEL D6LUT [get_cells {RO_SIRO_UUT/GENERATE_SIRO[0].UUT_SIRO/LUT2_inst}]
+set_property LOC SLICE_X0Y0 [get_cells {RO_SIRO_UUT/GENERATE_SIRO[0].UUT_SIRO/LUT2_inst}]
