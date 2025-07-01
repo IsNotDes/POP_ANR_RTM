@@ -1,4 +1,4 @@
-# POP-ANR_MDR
+# POP-ANR_MTR
 
 ## Overview
 
@@ -7,20 +7,44 @@ The system is structured for FPGA implementation, with support for simulation an
 
 ## Directory Structure
 
-- `New_Full_MdR/New_Full_MdR.srcs/sources_1/new/` — Main VHDL source files:
-  - `MdR.vhd` (top-level)
-    - `ATM.vhd`
-        - `Alarm_Manage_ATM.vhd`, `Comparator_ATM.vhd`, `Counter_ATM.vhd`, `Counter_Edges_ATM.vhd`, `Storing_ATM.vhd`
-    - `Detector.vhd`
-        - `Comparator_Detector.vhd`, `Counter_Detector.vhd`, `Storing_Detector.vhd`, `Falling_Edge_Detector.vhd`
-    - `RO_SIRO.vhd`
-        - `RO.vhd`, `SIRO.vhd`
-- `New_Full_MdR/New_Full_MdR.srcs/constrs_1/new/` — Constraints files for different FPGA boards:
-  - `New_Full_MdR_Basys3.xdc` (Basys3)
-  - `New_Full_MdR_CMODS7.xdc` (CMODS7)
-  - `New_Full_MdR_S7.xdc` (S7)
-- `New_Full_MdR/New_Full_MdR.srcs/sim_1/new/` — VHDL testbenches for simulation:
-  - `MdR_TB.vhd`, `MdR_TB_SIMPLE_ATM.vhd`, `MdR_TB_SIMPLE_D.vhd`, `MdR_TB_SIMPLE_FULL.vhd`, `RO_SIRO_TB.vhd`
+- `Heatmaps` — Heatmaps of the simulation results
+- `Miscellaneous` — Miscellaneous files
+- `New_Full_MTR` — Project files for Xilinx Vivado
+    - `New_Full_MdR.srcs/sources_1/new/` — Main VHDL source files:
+      - `MdR.vhd` (top-level)
+        - `ATM.vhd`
+            - `Alarm_Manage_ATM.vhd`, `Comparator_ATM.vhd`, `Counter_ATM.vhd`, `Counter_Edges_ATM.vhd`, `Storing_ATM.vhd`
+        - `Detector.vhd`
+            - `Comparator_Detector.vhd`, `Counter_Detector.vhd`, `Storing_Detector.vhd`, `Falling_Edge_Detector.vhd`
+        - `RO_SIRO.vhd`
+            - `RO.vhd`, `SIRO.vhd`
+    - `New_Full_MdR.srcs/constrs_1/new/` — Constraints files for different FPGA boards:
+      - `New_Full_MdR_Basys3.xdc` (Basys3)
+      - `New_Full_MdR_CMODS7.xdc` (CMODS7)
+      - `New_Full_MdR_S7.xdc` (S7)
+    - `New_Full_MdR.srcs/sim_1/new/` — VHDL testbenches for simulation:
+      - `MdR_TB.vhd`, `MdR_TB_SIMPLE_ATM.vhd`, `MdR_TB_SIMPLE_D.vhd`, `MdR_TB_SIMPLE_FULL.vhd`, `RO_SIRO_TB.vhd`
+- `New_Full_MTR_Campaign` — Campaign files for Xilinx Vivado
+    - `New_Full_MdR.srcs/sources_1/new/` — Main VHDL source files:
+      - `MdR.vhd` (top-level)
+        - `ATM.vhd`
+            - `Alarm_Manage_ATM.vhd`, `Comparator_ATM.vhd`, `Counter_ATM.vhd`, `Counter_Edges_ATM.vhd`, `Storing_ATM.vhd`
+        - `Detector.vhd`
+            - `Comparator_Detector.vhd`, `Counter_Detector.vhd`, `Storing_Detector.vhd`, `Falling_Edge_Detector.vhd`
+        - `RO_SIRO.vhd`
+            - `RO.vhd`, `SIRO.vhd`
+    - `New_Full_MdR.srcs/constrs_1/new/` — Constraints files for different FPGA boards:
+      - `New_Full_MdR_Basys3.xdc` (Basys3)
+      - `New_Full_MdR_CMODS7.xdc` (CMODS7)
+      - `New_Full_MdR_S7.xdc` (S7)
+    - `New_Full_MdR.srcs/sim_1/new/` — VHDL testbenches for simulation:
+      - `MdR_TB.vhd`, `MdR_TB_SIMPLE_ATM.vhd`, `MdR_TB_SIMPLE_D.vhd`, `MdR_TB_SIMPLE_FULL.vhd`, `RO_SIRO_TB.vhd`
+- `Old_Code` — Old code files
+- `Project_overviews` — Project presentation and report
+- `Simulation_Results` — Simulation results
+- `State of the Art` — State of the Art reports
+- `Heatmap_Generation.ipynb` — Jupyter notebook for heatmap generation
+- `MTR_Latest_Simulation_Results.png` — Latest simulation results from `MdR_TB.vhd`
 
 ## Main Components
 
@@ -60,7 +84,7 @@ They instantiate the top-level and submodules, apply stimulus to inputs (clock, 
 
 1. **Clone the repository** to your local machine.
 2. **Open Vivado or your preferred VHDL tool.**
-3. **Open the project** `New_Full_MdR/New_Full_MdR.xpr`.
+3. **Open the project** `New_Full_MTR/New_Full_MdR.xpr`.
 4. **Enable the appropriate constraints file** from `constrs_1/new/` for your target FPGA board.
 5. **Select the appropriate testbench file as top module** from `sim_1/new/` for your target FPGA board.
 6. **Run simulation** to verify functionality.
