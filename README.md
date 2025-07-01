@@ -29,6 +29,7 @@ The project is structured as follows:
 - `Project_Overviews` — Project presentation and report
 - `Simulation_Results` — Simulation results
 - `State_of_the_Art` — State of the Art reports
+- `Example_Campaign_Setup.png` — Picture of the campaign setup
 - `Heatmap_Generation.ipynb` — Jupyter notebook for heatmap generation
 - `MTR_Latest_Simulation_Results.png` — Latest simulation results from `MdR_TB.vhd`
 
@@ -88,6 +89,19 @@ The system requires the following tools:
 - Xilinx Vivado (recommended) or compatible VHDL synthesis/simulation tool
 - Supported FPGA board (e.g., Basys3, CMODS7, S7)
 
+For the campaign, the following tools are required:
+- 1 GBF
+- 1 Oscilloscope
+- 4 Breadboards
+- 8 FPGAs
+- 1 USB Hub
+- A lot of wires
+- 3 Oscilloscope probes (not small probes, as they are not suitable for this purpose)
+- 1 USB-A to USB-B cable
+- 8 USB-A to Micro-USB cables
+- Power outlet
+- PC with Vivado installed
+
 ## Heatmap generation
 
 It is possible to generate heatmaps of the simulations results done by the `MdR_TB.vhd` testbench. The heatmap generation is done using a Jupyter notebook `Heatmap_Generation.ipynb`. Some examples of simulation results are provided in the `Simulation_Results` folder. The generated heatmaps are saved in the `Heatmaps` folder.
@@ -96,7 +110,7 @@ It is possible to generate heatmaps of the simulations results done by the `MdR_
 
 The goal of the campaign is to test the robustness of the `ATM` module. The campaign is done by using a GBF, an oscilloscope, breadboards, an USB Hub, wires, and oscilloscope probes.
 
-### Campaign steps
+### Campaign protocol
 
 Use the `Example_Campaign_Setup.png` picture as a reference for the campaign setup.
 
