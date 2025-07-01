@@ -1,41 +1,25 @@
+# CMODS7 Constraints File
+
+## CMODS7 Voltage configuration
 set_property CONFIG_VOLTAGE 3.3 [current_design]
 set_property CFGBVS VCCO [current_design]
 
-## EXTREMEMENT IMPORTANT POUR AVOIR DES SIMULATIONS CORRECTES EN POST-IMPLEMENTATION AVEC LES ROs
+## Required for correct simulation results post implementation
 set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets RO_SIRO_UUT/UUT_RO/Inverters[*]]
 set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets RO_SIRO_UUT/UUT_RO/Nand_out]
 
-# Allow combinatorial loops for the oscillator
+## Allow combinatorial loops for the oscillator
 set_property ALLOW_COMBINATORIAL_LOOPS TRUE [get_nets RO_SIRO_UUT/GENERATE_SIRO[*].UUT_SIRO/Invertersattack]
 
+## Clock dedicated route
 set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets clk_s_IBUF]
-
-#create_clock -name clk_s -period 1538.46 -waveform {0 769.23} [get_nets clk_s_IBUF] # 1538.46 ns period
-#create_clock -name ro_out -period 38.46 -waveform {0 19.23} [get_nets ro_out] # 38.46 ns period
-
-create_pblock Pblock_SIRO
-resize_pblock [get_pblocks Pblock_SIRO] -add {CLOCKREGION_X0Y0:CLOCKREGION_X1Y0} 
-
-add_cells_to_pblock [get_pblocks Pblock_SIRO] [get_cells -filter {NAME =~ "RO_SIRO_UUT/GENERATE_SIRO[*].UUT_SIRO"}]
-
-set_property IS_SOFT_FALSE [get_pblocks Pblock_SIRO]
-
-#set_property EXCLUDE_PLACEMENT true [get_pblocks Pblock_SIRO]
-
-create_pblock Pblock_RO
-resize_pblock [get_pblocks Pblock_RO] -add {CLOCKREGION_X0Y1} 
-
-add_cells_to_pblock [get_pblocks Pblock_RO] [get_cells -filter {NAME =~ "*RO_SIRO_UUT/UUT_RO"}]
-
-set_property IS_SOFT_FALSE [get_pblocks Pblock_RO]
-
-#set_property EXCLUDE_PLACEMENT true [get_pblocks Pblock_RO]
+set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets reset_IBUF]
 
 ## Enable RO and SIRO
-set_property PACKAGE_PIN D2 [get_ports enable_ro_and_siro]
-set_property IOSTANDARD LVCMOS33 [get_ports enable_ro_and_siro]
-#set_property PACKAGE_PIN D1 [get_ports reset]
-#set_property IOSTANDARD LVCMOS33 [get_ports reset]
+#set_property PACKAGE_PIN D2 [get_ports enable_ro_and_siro]
+#set_property IOSTANDARD LVCMOS33 [get_ports enable_ro_and_siro]
+set_property PACKAGE_PIN D1 [get_ports reset]
+set_property IOSTANDARD LVCMOS33 [get_ports reset]
 
 ## Alarms Outputs (LED)
 set_property PACKAGE_PIN E2 [get_ports Alarm_ATM]					
@@ -74,23 +58,14 @@ set_property -dict { PACKAGE_PIN J11   IOSTANDARD LVCMOS33 } [get_ports {q_str_a
 set_property -dict { PACKAGE_PIN C5    IOSTANDARD LVCMOS33 } [get_ports {q_str_atm[0]}]
 
 # edge_count[2:0], edges_done
-set_property -dict { PACKAGE_PIN A2    IOSTANDARD LVCMOS33 } [get_ports {edge_count[2]}]
-set_property -dict { PACKAGE_PIN B2    IOSTANDARD LVCMOS33 } [get_ports {edge_count[1]}]
-set_property -dict { PACKAGE_PIN B1    IOSTANDARD LVCMOS33 } [get_ports {edge_count[0]}]
-set_property -dict { PACKAGE_PIN C1    IOSTANDARD LVCMOS33 } [get_ports {edges_done}]
+#set_property -dict { PACKAGE_PIN A2    IOSTANDARD LVCMOS33 } [get_ports {edge_count[2]}]
+#set_property -dict { PACKAGE_PIN B2    IOSTANDARD LVCMOS33 } [get_ports {edge_count[1]}]
+set_property -dict { PACKAGE_PIN B1    IOSTANDARD LVCMOS33 } [get_ports {edges_done}]
 
-#set_property -dict { PACKAGE_PIN B3    IOSTANDARD LVCMOS33 } [get_ports { pio45 }]
+## Enable RO and SIRO
+set_property -dict { PACKAGE_PIN C1    IOSTANDARD LVCMOS33 } [get_ports {enable_ro_and_siro}]
+
+## GBF, System clock, output of RO
+set_property -dict { PACKAGE_PIN B3    IOSTANDARD LVCMOS33 } [get_ports {gbf_out}]
 set_property -dict { PACKAGE_PIN B4    IOSTANDARD LVCMOS33 } [get_ports {clk_s}] 
 set_property -dict { PACKAGE_PIN A3    IOSTANDARD LVCMOS33 } [get_ports {ro_out}]
-set_property -dict { PACKAGE_PIN A4    IOSTANDARD LVCMOS33 } [get_ports {reset}]
-
-##Pmod Header JB
-##Sch name = JB1
-#set_property PACKAGE_PIN J2 [get_ports clk_s]					
-#set_property IOSTANDARD LVCMOS33 [get_ports clk_s]
-##Sch name = JB2
-#set_property PACKAGE_PIN H2 [get_ports ro_out]					
-#set_property IOSTANDARD LVCMOS33 [get_ports ro_out]
-##Sch name = JB3
-#set_property PACKAGE_PIN H4 [get_ports gbf_out]					
-#set_property IOSTANDARD LVCMOS33 [get_ports gbf_out]

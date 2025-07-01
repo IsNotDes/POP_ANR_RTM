@@ -12,7 +12,7 @@ entity Counter_Edges_ATM is
 end Counter_Edges_ATM;
 
 architecture Behavioral of Counter_Edges_ATM is
-    constant N             : INTEGER := 5;                    -- Threshold for edge count
+    constant N             : INTEGER := 5;                    -- Numbers of clk_s periods during which the edges of ro_output are counted
     signal edge_count_reg  : UNSIGNED(2 downto 0) := (others => '0'); -- Internal edge count register
 begin
     process(clk_s)

@@ -6,8 +6,8 @@ entity Comparator_Detector is
     Port (
         clk_s        : in  STD_LOGIC;                      -- Clock signal for synchronization
         reset        : in  STD_LOGIC;                      -- Active-high reset
-        q_str_d      : in  STD_LOGIC_VECTOR(7 downto 0);
-        Alarm_Detector : out STD_LOGIC
+        q_str_d      : in  STD_LOGIC_VECTOR(7 downto 0);   -- Stored counter value from the detector
+        Alarm_Detector : out STD_LOGIC                     -- Alarm signal from Comparator_Detector
     );
 end Comparator_Detector;
 

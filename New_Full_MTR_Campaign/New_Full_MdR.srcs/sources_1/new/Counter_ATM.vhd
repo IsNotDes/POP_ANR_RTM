@@ -4,10 +4,10 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity Counter_ATM is
     Port (
-        ro_output   : in  STD_LOGIC;
-        reset       : in  STD_LOGIC;
-        edges_done  : in  STD_LOGIC;
-        q_cnt_atm   : out STD_LOGIC_VECTOR(15 downto 0)
+        ro_output   : in  STD_LOGIC;   -- Shared RO output
+        reset       : in  STD_LOGIC;   -- Global reset signal
+        edges_done  : in  STD_LOGIC;   -- Signal indicating counting is done
+        q_cnt_atm   : out STD_LOGIC_VECTOR(15 downto 0)   -- Live counter value output
     );
 end Counter_ATM;
 

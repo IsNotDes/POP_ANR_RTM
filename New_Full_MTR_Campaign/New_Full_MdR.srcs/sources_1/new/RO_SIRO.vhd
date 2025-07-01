@@ -9,7 +9,7 @@ entity RO_SIRO is
 end RO_SIRO;
 
 architecture Behavioral of RO_SIRO is
-    signal activate_SIRO : STD_LOGIC;
+    signal activate_SIRO : STD_LOGIC;   -- Signal to activate SIROs
     constant SIRO_number : integer := 7000;  -- Number of SIROs
 
     -- Prevent optimization
@@ -28,14 +28,14 @@ architecture Behavioral of RO_SIRO is
     -- Component declarations
     component RO
         Port (
-            enable_ro_and_siro : in  STD_LOGIC;
-            ro_out    : out STD_LOGIC
+            enable_ro_and_siro : in  STD_LOGIC;   -- Combined enable signal for both RO and SIRO
+            ro_out    : out STD_LOGIC              -- Output from RO
         );
     end component;
 
     component SIRO
         Port (
-            enable_ro_and_siro : in  STD_LOGIC
+            enable_ro_and_siro : in  STD_LOGIC              -- Combined enable signal for both RO and SIRO
         );
     end component;
 
@@ -45,8 +45,8 @@ begin
 
     UUT_RO : RO
         port map (
-            enable_ro_and_siro => enable_ro_and_siro,
-            ro_out    => ro_out
+            enable_ro_and_siro => enable_ro_and_siro,   -- Combined enable signal for both RO and SIRO
+            ro_out    => ro_out                          -- Output from RO
         );
 
     -- Generate SIRO_number ROattacks (for power/EM analysis)
@@ -54,7 +54,7 @@ begin
     begin
         UUT_SIRO : SIRO
             port map (
-                enable_ro_and_siro => activate_SIRO
+                enable_ro_and_siro => activate_SIRO              -- Combined enable signal for both RO and SIRO
             );
     end generate GENERATE_SIRO;
 

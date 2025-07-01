@@ -6,23 +6,21 @@ use UNISIM.VComponents.all;
 
 entity RO is
     Port (
-        enable_ro_and_siro : in  std_logic;
-        ro_out    : out std_logic
+        enable_ro_and_siro : in  std_logic;   -- Combined enable signal for both RO and SIRO
+        ro_out    : out std_logic              -- Output from RO
     );
 end RO;
 
 architecture Behavioral of RO is
-    -- Number of inverters (257 (271 0SIROS)) - simulation for 4 MHz | ??? (345 0 SIROS) - implementation for 4 MHz | ?? - simulation for 26 MHz | 51 - implementation for 26MHz)
-    -- 435 (0SIRO)
-    constant NUM_INV : integer := 401; 
-    signal Inverters : std_logic_vector(NUM_INV-1 downto 0);
-    signal Nand_out  : std_logic;
+    constant NUM_INV : integer := 401;  -- Number of inverters
+    signal Inverters : std_logic_vector(NUM_INV-1 downto 0);  -- Inverter signals
+    signal Nand_out  : std_logic;  -- Nand_out is the output of the last inverter
 
     attribute DONT_TOUCH : string;
     attribute DONT_TOUCH of Inverters : signal is "true";
     attribute DONT_TOUCH of Nand_out  : signal is "true";
 begin
-    Nand_out <= enable_ro_and_siro nand Inverters(NUM_INV-2);
+    Nand_out <= enable_ro_and_siro nand Inverters(NUM_INV-2);  -- Nand_out is the output of the last inverter
 
     Inverter0 : LUT1
         generic map (
@@ -44,5 +42,5 @@ begin
             );
     end generate Inverseur;
 
-    ro_out <= Inverters(NUM_INV-1);
+    ro_out <= Inverters(NUM_INV-1);  -- ro_out is the output of the last inverter
 end Behavioral;

@@ -4,11 +4,11 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity Storing_Detector is
     Port (
-        ro_output : in  STD_LOGIC;
-        reset     : in  STD_LOGIC;
-        q_fe      : in  STD_LOGIC;
-        q_cnt     : in  STD_LOGIC_VECTOR(7 downto 0);
-        q_str_d   : out STD_LOGIC_VECTOR(7 downto 0)
+        ro_output : in  STD_LOGIC;  -- RO output
+        reset     : in  STD_LOGIC;  -- Reset signal
+        q_fe      : in  STD_LOGIC;  -- Falling edge signal
+        q_cnt     : in  STD_LOGIC_VECTOR(7 downto 0);  -- Counter value
+        q_str_d   : out STD_LOGIC_VECTOR(7 downto 0)   -- Stored counter value
     );
 end Storing_Detector;
 

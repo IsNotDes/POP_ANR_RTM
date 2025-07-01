@@ -6,12 +6,12 @@ use UNISIM.VComponents.ALL;
 
 entity SIRO is
     Port (
-        enable_ro_and_siro : in  STD_LOGIC
+        enable_ro_and_siro : in  STD_LOGIC  -- Combined enable signal for both RO and SIRO
     );
 end SIRO;
 
 architecture Behavioral of SIRO is
-    signal Invertersattack : STD_LOGIC;
+    signal Invertersattack : STD_LOGIC;  -- Inverter output
     attribute KEEP        : string;
     attribute DONT_TOUCH  : string;
     attribute KEEP of Invertersattack      : signal is "true";

@@ -22,36 +22,35 @@ architecture Behavioral of MdR is
 
     component ATM
         Port (
-            clk_s          : in  STD_LOGIC;
-            reset          : in  STD_LOGIC;
-            ro_output      : in  STD_LOGIC;
-            Alarm_ATM      : out STD_LOGIC;
-            q_str_atm      : out STD_LOGIC_VECTOR(15 downto 0);
-            edges_done     : out STD_LOGIC
+            clk_s          : in  STD_LOGIC;                           -- Main clock
+            reset          : in  STD_LOGIC;                           -- Active-low reset
+            ro_output      : in  STD_LOGIC;                           -- Shared RO output
+            Alarm_ATM      : out STD_LOGIC;                           -- Alarm_ATM output
+            q_str_atm      : out STD_LOGIC_VECTOR(15 downto 0);        -- Stored value output
+            edges_done     : out STD_LOGIC                            -- Signal indicating counting is done
         );
     end component;
 
     component Detector
         Port (
-            clk_s           : in  STD_LOGIC;
-            reset           : in  STD_LOGIC;
-            ro_output       : in  STD_LOGIC;
-            Alarm_Detector  : out STD_LOGIC;
-            q_str_d         : out STD_LOGIC_VECTOR(7 downto 0)
+            clk_s           : in  STD_LOGIC;                           -- Main clock
+            reset           : in  STD_LOGIC;                           -- Active-low reset
+            ro_output       : in  STD_LOGIC;                           -- Shared RO output
+            Alarm_Detector  : out STD_LOGIC;                           -- Alarm_Detector output
+            q_str_d         : out STD_LOGIC_VECTOR(7 downto 0)         -- Stored value output
         );
     end component;
     
     component RO_SIRO
         Port (
-            enable_ro_and_siro : in  STD_LOGIC;
-            ro_out             : out STD_LOGIC
+            enable_ro_and_siro : in  STD_LOGIC;                       -- Combined enable signal
+            ro_out             : out STD_LOGIC                        -- Shared RO output
         );
     end component;
     
 begin
     -- Multiplexer logic to select between internal RO and gbf_out
     ro_output <= gbf_out when enable_ro_and_siro = '0' else ro_internal;
-    -- ro_output <= ro_internal;
     
     -- Assign the internal signal to the top-level output
     ro_out <= ro_output;
@@ -59,22 +58,22 @@ begin
     -- Instantiate the Auto_Test_Module
     ATM_UUT: ATM
         port map (
-            clk_s       => clk_s,          -- Main clock signal
-            reset       => reset,          -- Global reset signal
-            ro_output   => ro_output,      -- Shared RO output
-            Alarm_ATM   => Alarm_ATM,      -- Alarm_ATM output
-            q_str_atm   => q_str_atm,      -- Stored value output
-            edges_done  => edges_done      -- Signal indicating counting is done
+            clk_s       => clk_s,                               -- Main clock
+            reset       => reset,                               -- Active-low reset
+            ro_output   => ro_output,                           -- Shared RO output
+            Alarm_ATM   => Alarm_ATM,                           -- Alarm_ATM output
+            q_str_atm   => q_str_atm,                           -- Stored value output
+            edges_done  => edges_done                           -- Signal indicating counting is done
         );
 
     -- Instantiate Detector module
     Detector_UUT: Detector
         port map (
-            clk_s           => clk_s,          -- Main clock signal
-            reset           => reset,          -- Global reset signal
-            ro_output       => ro_output,      -- Connects to the shared RO output            
-            Alarm_Detector  => Alarm_Detector, -- Alarm output
-            q_str_d         => q_str_d         -- Stored value output
+            clk_s           => clk_s,                               -- Main clock
+            reset           => reset,                               -- Active-low reset
+            ro_output       => ro_output,                           -- Shared RO output
+            Alarm_Detector  => Alarm_Detector,                      -- Alarm output
+            q_str_d         => q_str_d                              -- Stored value output
         );
 
     -- Instantiate RO_SIRO module
