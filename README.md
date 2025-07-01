@@ -98,10 +98,65 @@ The goal of the campaign is to test the robustness of the `ATM` module. The camp
 
 ### Campaign steps
 
-1. 
+Use the `Example_Campaign_Setup.png` picture as a reference for the campaign setup.
 
-## Notes
+1. Ensure that the FPGAs and wires are properly placed.
 
-- Ensure the correct `.xdc` file is used for your board.
-- Some signals are disabled in the constraints for unused outputs.
-- The design uses combinatorial loops for ring oscillators; simulation settings in the constraints are critical for correct behavior.
+The FPGAs and wires should be placed in the breadboard as shown in the picture. 
+
+The green/yellow wires represent the system clock, and are connected to the `clk_s` pin of each FPGA. Be sure to use the right side of the breadboard for the green/yellow wires, as `clk_s` should be a global clock signal.
+
+The orange/red wires represent the output from the GBF, and are connected to the `gbf_out` pin of each FPGA. These will be left floating, until the validation of the `ATM` module.
+
+The purple/blue wires represent the output from the ring oscillator (internal ring oscillator or external ring oscillator from GBF), and are connected to the `ro_out` pin of each FPGA. These will be left floating, until the validation of the `ATM` module.
+
+The grey/white wires represent the enable signal for the internal ring oscillator and SIROs. When this signal is low, the internal ring oscillator and SIROs are disabled. Instead, the external ring oscillator (from the GBF) is used. When the signal is high, the internal ring oscillator and SIROs are enabled. These are connected to the `enable_ro_and_siro` pin of each FPGA. As default, the internal ring oscillator and SIROs are enabled. This is done by putting the grey/white wire to the ground of each FPGA. This will be the case until the validation of the `ATM` module.
+
+2. Ensure that the GBF is properly configured and connected to the FPGAs.
+
+The first signal of the GBF will be `clk_s`, which is the system clock. It should be connected to the pin `clk_s` of each FPGA. The second signal of the GBF will be `gbf_out`, which is the output from the GBF used in validations. It will be connected to the pin `gbf_out` of each FPGA, one by one, during the validation of the `ATM` module.
+
+Here are the parameters that should be used for these signals:
+- `clk_s`
+  - `Frequency`: 100 kHz
+  - `Amplitude`: 3.3 V
+  - `Offset`: 1.65 V
+  - `Phase`: 0
+  - `Duty Cycle`: 50%
+- `gbf_out`
+  - `Frequency`: 4 MHz
+  - `Amplitude`: 3.3 V
+  - `Offset`: 1.65 V
+  - `Phase`: 0
+  - `Duty Cycle`: 50%
+
+Be sure to avoid using the small oscilloscope probes to transfer the signals from the GBF to the FPGAs, as they are not suitable for this purpose.
+
+3. Ensure that the oscilloscope is properly connected to the FPGAs.
+
+The oscilloscope will be used to measure the `ro_out` signal of the FPGAs during the validation of the `ATM` module, one by one (you will only need one oscilloscope probe for this purpose).
+
+4. Ensure that the FPGAs are properly connected to the PC.
+
+Connect the USB Hub with the USB-A to USB-B cable to a PC with Vivado installed, and the Vivado project `New_Full_MdR.xpr` opened. Connect the power cable from the USB Hub to a power outlet. You should have 8 USB ports available on the USB Hub, and 8 USB-A to Micro-USB cables. Connect each USB-A to Micro-USB cable to a Micro-USB port of each FPGA. For easier programming, you should do it in an ordered way, for example, first connect the lower FPGAs, then the upper FPGAs. The recommended way would be to first connect the lower FPGA of the first breadboard, then the upper FPGA of the first breadboard, then the lower FPGA of the second breadboard, then the upper FPGA of the second breadboard, and so on. After that, press the Power button of the USB Hub to power on the FPGAs.
+
+5. Ensure that the right `.xdc` file is used for your boards. As default, it should be `New_Full_MdR_CMODS7.xdc`.
+
+6. Ensure that the right top module is selected for the bitstream generation for the campaign. As default, it should be `MdR.vhd`.
+
+7. Generate the bitstream for the campaign.
+
+8. Press the outputs buttons of the GBF so that the outputs are applied to the FPGAs.
+
+9. Program the FPGAs with the generated bitstream. Again, it should be done in the same ordered way you connected the FPGAs to the PC, for example, first lower FPGAs, then upper FPGAs. The recommended way would be to first lower FPGA of the first breadboard, then upper FPGA of the first breadboard, then lower FPGA of the second breadboard, then upper FPGA of the second breadboard, and so on.
+
+10. All the FPGAs should have no alarms raised yet (no LEDS lit up). If an alarm is raised, check that you followed the steps correctly.
+
+11. From now on, the following steps should be repeated :
+  1. Let the FPGAs run for a while (recommended duration is one day).
+  2. After the duration, check the frequency of the output of the oscillator `ro_out` with the oscilloscope for each FPGA. Write it down.
+  3. Put the grey/white wire of each FPGA to the ground. This will disable the internal ring oscillator and SIROs, and enable the external ring oscillator (from the GBF) which we'll use for the validations of the modules. Let them cool down for a while (until they are at room temperature, which would be around 50°C for them), then check if any alarms are raised on the FPGAs, *after using the reset button at least once on each FPGA*. Write it down.
+  4. Check if the `Detector`, and the `ATM` modules are working correctly. *When you change any frequency, you should ALWAYS use the reset button, to check if the alarms stay, as sometimes changing the frequencies too fast will cause false alarms.* Don't forget to put the oscilloscope probe on the `gbf_out` pin of each FPGA before following these steps :
+    1. Check if the `Detector` module is working correctly. To do this, position the GBF signals (if not already done) on the nominal frequencies, which were defined in the previous steps. Go above this nominal frequency by the margin in percentage defined for the `Detector` module. In this case, you should go above 330 kHz. Write down the results for the alarms. Go back to the nominal frequency for `clk_s`. Go below this nominal frequency by the margin in percentage defined for the `Detector` module. In this case, you should go below 270 kHz. Write down the results for the alarms. Go back to the nominal frequency for `clk_s`.
+    2. Check if the `ATM` module is working correctly. To do this, position the GBF signals (if not already done) on the nominal frequencies, which were defined in the previous steps. Go above this nominal frequency by the margin in percentage defined for the `ATM` module. In this case, you should go above 4.4 MHz. Write down the results for the alarms. Go back to the nominal frequency for `ro_out`. Go below this nominal frequency by the margin in percentage defined for the `ATM` module. In this case, you should go below 3.6 MHz. Write down the results for the alarms. Go back to the nominal frequency for `ro_out`.
+  5. Repeat steps 1 to 4 until the end of the campaign.
