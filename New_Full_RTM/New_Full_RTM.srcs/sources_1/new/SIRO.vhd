@@ -21,7 +21,7 @@ architecture Behavioral of SIRO is
 begin
     LUT2_inst : LUT2
         generic map (
-            INIT => "01"
+            INIT => x"1"
         )
         port map (
             O  => Invertersattack,

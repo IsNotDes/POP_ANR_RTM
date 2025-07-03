@@ -3,13 +3,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 use STD.TEXTIO.ALL;  -- For file operations
 
-entity MdR_TB is
-end MdR_TB;
+entity RTM_TB is
+end RTM_TB;
 
-architecture Behavioral of MdR_TB is
+architecture Behavioral of RTM_TB is
 
-    -- Component Declaration for MdR
-    component MdR
+    -- Component Declaration for RTM
+    component RTM
         Port (
             clk_s              : in  STD_LOGIC;                            -- Main clock signal
             reset              : in  STD_LOGIC;                            -- Global reset signal
@@ -17,10 +17,9 @@ architecture Behavioral of MdR_TB is
             gbf_out            : in  STD_LOGIC;                            -- External input from PMOD pin
             ro_out             : out STD_LOGIC;                            -- Output from the shared RO
             Alarm_Detector     : out STD_LOGIC;                            -- Alarm output from Detector
-            Alarm_ATM          : out STD_LOGIC;                            -- Final alarm output from Auto_Test_Module
+            Alarm_OMM          : out STD_LOGIC;                            -- Final alarm output from Auto_Test_Module
             q_str_d            : out STD_LOGIC_VECTOR(7 downto 0);         -- Stored value from Detector
-            q_str_atm          : out STD_LOGIC_VECTOR(15 downto 0);        -- Stored value from Auto_Test_Module
-            edge_count         : out STD_LOGIC_VECTOR(2 downto 0);         -- Edge count from Auto_Test_Module
+            q_str_omm          : out STD_LOGIC_VECTOR(15 downto 0);        -- Stored value from Auto_Test_Module
             edges_done         : out STD_LOGIC                             -- Signal indicating counting is done
         );
     end component;
@@ -34,31 +33,30 @@ architecture Behavioral of MdR_TB is
     -- Outputs
     signal ro_out             : STD_LOGIC;                             -- Output from the shared RO
     signal Alarm_Detector     : STD_LOGIC;                             -- Alarm output from Detector
-    signal Alarm_ATM          : STD_LOGIC;                             -- Final alarm output from Auto_Test_Module
+    signal Alarm_OMM          : STD_LOGIC;                             -- Final alarm output from Auto_Test_Module
     signal q_str_d            : STD_LOGIC_VECTOR(7 downto 0);          -- Stored value from Detector
-    signal q_str_atm          : STD_LOGIC_VECTOR(15 downto 0);         -- Stored value from Auto_Test_Module
-    signal edge_count         : STD_LOGIC_VECTOR(2 downto 0);          -- Edge count from Auto_Test_Module
+    signal q_str_omm          : STD_LOGIC_VECTOR(15 downto 0);         -- Stored value from Auto_Test_Module
     signal edges_done         : STD_LOGIC;                             -- Signal indicating counting is done
 
     -- Clock period definitions
     signal CLK_S_PERIOD       : TIME := 10 us;                          -- 100 kHz clock (adjust as needed)
-    signal GBF_PERIOD         : TIME := 250 ns;                         -- 4 MHz simulated RO (adjust as needed) (ONLY FOR SIMULATION)
+    signal RO_PERIOD         : TIME := 250 ns;                         -- 4 MHz simulated RO (adjust as needed) (ONLY FOR SIMULATION)
 
     -- Constants for test configuration
     constant CLK_S_BASE       : TIME := 10 us;                          -- Base period for clk_s (100 kHz)
-    constant GBF_BASE         : TIME := 250 ns;                         -- Base period for gbf_out (4 MHz)
+    constant RO_BASE         : TIME := 250 ns;                         -- Base period for gbf_out (4 MHz)
     constant STEP_PERCENT     : real := 1.0;                           -- Step size in percentage
     constant STABLE_TIME      : TIME := 500 us;                           -- Time to wait for stable operation
     constant NUM_STEPS        : integer := 50;                          -- Number of steps in each direction
 
     -- File handling
     file results_file : TEXT;
-    constant results_filename : string := "..\\..\\..\\..\\..\\..\\Simulation_Results\\simulation_results.csv";
+    constant results_filename : string := "..\\..\\..\\..\\..\\..\\..\\Simulation_Results\\simulation_results.csv";
 
 begin
 
     -- Instantiate the Unit Under Test (UUT)
-    UUT: MdR
+    UUT: RTM
         port map (
             clk_s              => clk_s,
             reset              => reset,
@@ -66,10 +64,9 @@ begin
             gbf_out            => gbf_out,
             ro_out             => ro_out,
             Alarm_Detector     => Alarm_Detector,
-            Alarm_ATM          => Alarm_ATM,
+            Alarm_OMM          => Alarm_OMM,
             q_str_d            => q_str_d,
-            q_str_atm          => q_str_atm,
-            edge_count         => edge_count,
+            q_str_omm          => q_str_omm,
             edges_done         => edges_done
         );
 
@@ -77,7 +74,7 @@ begin
     clk_s <= not clk_s after CLK_S_PERIOD / 2;
     
     -- Generate simulated RO signal (gbf_out) (ONLY FOR SIMULATION)
-    gbf_out <= not gbf_out after GBF_PERIOD / 2;
+    gbf_out <= not gbf_out after RO_PERIOD / 2;
     
     -- Main test process
     process
@@ -92,7 +89,7 @@ begin
         file_open(results_file, results_filename, WRITE_MODE);
         
         -- Write header
-        write(line_out, string'("clk_s_T(s),gbf_T(s),q_str_d,Alarm_Detector,q_str_atm,Alarm_ATM"));
+        write(line_out, string'("clk_s_T(s),gbf_T(s),q_str_d,Alarm_Detector,q_str_omm,Alarm_OMM"));
         writeline(results_file, line_out);
         
         -- Initial reset state
@@ -119,8 +116,8 @@ begin
             
             for j in -NUM_STEPS to NUM_STEPS loop
                 -- Calculate current gbf_out period (varying by STEP_PERCENT)
-                gbf_period_current := GBF_BASE * (1.0 + real(j) * STEP_PERCENT / 100.0);
-                GBF_PERIOD <= gbf_period_current;
+                gbf_period_current := RO_BASE * (1.0 + real(j) * STEP_PERCENT / 100.0);
+                RO_PERIOD <= gbf_period_current;
                 
                 reset_time := CLK_S_PERIOD;
                 
@@ -129,7 +126,7 @@ begin
                 wait for reset_time;
                 reset <= '0';
 
-                -- Wait for stable operation [A REMPLACER DANS LE FUTUR PAR UNE MULTIPLICATION DE CLK_S_PERIOD POUR EVITER DE PAS AVOIR ASSEZ DE TEMPS POUR UN CYCLE DE COMPTAGE]
+                -- Wait for stable operation
                 wait for STABLE_TIME;
                 
                 -- Write results to file
@@ -141,9 +138,9 @@ begin
                 write(line_out, string'(","));
                 write(line_out, std_logic'image(Alarm_Detector));
                 write(line_out, string'(","));
-                write(line_out, integer'image(to_integer(unsigned(q_str_atm))));
+                write(line_out, integer'image(to_integer(unsigned(q_str_omm))));
                 write(line_out, string'(","));
-                write(line_out, std_logic'image(Alarm_ATM));
+                write(line_out, std_logic'image(Alarm_OMM));
                 writeline(results_file, line_out);
                 
             end loop;

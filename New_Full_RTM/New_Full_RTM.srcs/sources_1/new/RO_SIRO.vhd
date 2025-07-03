@@ -10,7 +10,7 @@ end RO_SIRO;
 
 architecture Behavioral of RO_SIRO is
     signal activate_SIRO : STD_LOGIC;   -- Signal to activate SIROs
-    constant SIRO_number : integer := 7000;  -- Number of SIROs
+    constant SIRO_number : integer := 1;  -- Number of SIROs
 
     -- Prevent optimization
     attribute KEEP           : string;

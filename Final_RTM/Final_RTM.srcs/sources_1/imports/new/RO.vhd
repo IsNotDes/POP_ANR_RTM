@@ -12,7 +12,7 @@ entity RO is
 end RO;
 
 architecture Behavioral of RO is
-    constant NUM_INV : integer := 401;  -- Number of inverters
+    constant NUM_INV : integer := 301;  -- Number of inverters
     signal Inverters : std_logic_vector(NUM_INV-1 downto 0);  -- Inverter signals
     signal Nand_out  : std_logic;  -- Nand_out is the output of the last inverter
 
