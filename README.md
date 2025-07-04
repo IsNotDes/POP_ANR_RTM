@@ -107,6 +107,36 @@ For the campaign, the following tools are required:
 
 It is possible to generate heatmaps of the simulations results done by the `RTM_TB.vhd` testbench. The heatmap generation is done using a Jupyter notebook `Heatmap_Generation.ipynb`. Some examples of simulation results are provided in the `Simulation_Results` folder. The generated heatmaps are saved in the `Heatmaps` folder.
 
+## Programming FPGA EEPROM
+
+This will allow your bitstream to persist even after any power-off incidents or if you disconnect the FPGAs. They should already be preprogrammed, but just in case, we will discuss the steps necessary here :
+
+1. Generate the bitstream.
+
+2. Generate directly or from Tools the Memory Configuration File.
+
+3. Select Memory part, the model of your FPGA memory (mx25l3233f-spi-x1-x2-x4 for CMODS7) and put the filename that you want (ex. 0SIRO...).
+
+4. Select Interface SPIx4.
+
+5. Check load bitstream files.
+
+6. Put your bitstream file (bitfile, which should be in .runs/impl1/*.bit).
+
+7. Overwrite just in case you have to redo it. Press OK.
+
+8. Add Configuration Memory File.
+
+9. Select the model of your FPGA memory again (mx25l3233f-spi-x1-x2-x4 for CMODS7) for the Configuration Memory part.
+
+10. Select your generated Memory Configuration File from step 2 to 7.
+
+11. Don't put any PRM file. Press OK.
+
+12. Program your FPGA as usual.
+
+13. Repeat all steps when bitstream has to be changed, else you can skip to step 8.
+
 ## Campaign
 
 The goal of the campaign is to test the robustness of the `OMM` module. The campaign is done by using a GBF, an oscilloscope, breadboards, an USB Hub, wires, and oscilloscope probes.
@@ -159,7 +189,7 @@ Connect the USB Hub with the USB-A to USB-B cable to a PC with Vivado installed,
 
 6. Ensure that the right top module is selected for the bitstream generation for the campaign. As default, it should be `RTM.vhd`.
 
-7. Generate the bitstream for the campaign.
+7. Generate the bitstream for the campaign (not necessary if you already programmed the bitstream on the EEPROM of the FGPA, see section ).
 
 8. Press the outputs buttons of the GBF so that the outputs are applied to the FPGAs.
 
