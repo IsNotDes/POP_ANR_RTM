@@ -677,3 +677,5 @@ set_property -dict { PACKAGE_PIN C1    IOSTANDARD LVCMOS33 } [get_ports {enable_
 set_property -dict { PACKAGE_PIN B3    IOSTANDARD LVCMOS33 } [get_ports {gbf_out}]
 set_property -dict { PACKAGE_PIN B4    IOSTANDARD LVCMOS33 } [get_ports {clk_s}] 
 set_property -dict { PACKAGE_PIN A3    IOSTANDARD LVCMOS33 } [get_ports {ro_out}]
+
+set_property CONFIG_MODE SPIx4 [current_design]

@@ -54,3 +54,5 @@ set_property -dict { PACKAGE_PIN P18   IOSTANDARD LVCMOS33 } [get_ports {edges_d
 set_property -dict { PACKAGE_PIN M19   IOSTANDARD LVCMOS33 } [get_ports {clk_s}]
 set_property -dict { PACKAGE_PIN P17   IOSTANDARD LVCMOS33 } [get_ports {ro_out}]
 set_property -dict { PACKAGE_PIN R18   IOSTANDARD LVCMOS33 } [get_ports {gbf_out}]
+
+set_property CONFIG_MODE SPIx4 [current_design]
